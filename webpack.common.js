@@ -25,7 +25,15 @@ module.exports = {
                     filename: 'fonts/[hash][ext][query]'
                 }
             },
+            {
+                test: /\.(js|jsx)$/i,
+                exclude: /node_modules/,
+                use: ['babel-loader'],
+            }
         ]
+    },
+    resolve: {
+        extensions: ['.jsx', '.js'],
     },
     plugins: [
         new HtmlWebpackPlugin({

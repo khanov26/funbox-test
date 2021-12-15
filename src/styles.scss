@@ -1,0 +1,225 @@
+@import "~normalize.css";
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100;400;700&display=swap');
+
+@font-face {
+  font-family: 'Trebuchet MS';
+  src: url('./fonts/TrebuchetMS-Bold.eot');
+  src: local('Trebuchet MS Bold'), local('TrebuchetMS-Bold'),
+  url('./fonts/TrebuchetMS-Bold.eot?#iefix') format('embedded-opentype'),
+  url('./fonts/TrebuchetMS-Bold.woff') format('woff'),
+  url('./fonts/TrebuchetMS-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Trebuchet MS';
+  src: url('./fonts/TrebuchetMS.eot');
+  src: local('Trebuchet MS'), local('TrebuchetMS'),
+  url('./fonts/TrebuchetMS.eot?#iefix') format('embedded-opentype'),
+  url('./fonts/TrebuchetMS.woff') format('woff'),
+  url('./fonts/TrebuchetMS.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$blue: #1698D9;
+$red: #D91667;
+$gray: #666666;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-family: 'Exo 2', sans-serif;
+  line-height: 1.2;
+}
+
+body {
+  min-height: 100%;
+  background:
+          linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.5) 100%),
+          url("./images/pattern.png");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cat-food {
+  padding: 24px;
+
+  $block: &;
+
+  &__title {
+    font-weight: 100;
+    font-size: 36px;
+    color: white;
+    text-align: center;
+    margin: 0 0 24px;
+  }
+
+  &__boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 30px;
+    column-gap: 80px;
+    list-style: none;
+    font-family: 'Trebuchet MS', sans-serif;
+  }
+
+  &__boxes-item {
+    display: flex;
+    flex-direction: column;
+
+    &--selected {
+      .food-box {
+        background-color: $red;
+      }
+
+      .food-weight {
+        background-color: $red;
+      }
+    }
+
+    &--unavailable {
+      .food-box {
+        background-color: $gray;
+        pointer-events: none;
+
+        &__title,
+        &__subtitle {
+          color: $gray;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: white;
+          opacity: 0.5;
+        }
+      }
+
+      .food-weight {
+        background-color: $gray;
+      }
+    }
+  }
+
+  &__description-text {
+    margin-top: 14px;
+    font-size: 13px;
+    color: white;
+    text-align: center;
+
+    &--yellow {
+      color: #ffff66;
+    }
+  }
+
+  &__buy {
+    color: $blue;
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    cursor: pointer;
+  }
+}
+
+.food-box {
+  position: relative;
+  max-width: 320px;
+  display: flex;
+  padding: 4px;
+  background-color: $blue;
+  clip-path: polygon(44px 0, 100% 0, 100% 100%, 0 100%, 0 44px);
+  border-radius: 12px;
+  cursor: pointer;
+  flex-grow: 1;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    background: #F2F2F2;
+    clip-path: polygon(43px 0, 100% 0, 100% 100%, 0 100%, 0 43px);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  &__top {
+    padding: 17px 47px;
+  }
+
+  &__top-text {
+    font-size: 16px;
+    color: $gray;
+    margin-bottom: 5px;
+
+    &--red {
+      color: $red;
+    }
+  }
+
+  &__title {
+    font-size: 48px;
+    font-weight: bold;
+    color: black;
+  }
+
+  &__subtitle {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 15px;
+  }
+
+  &__details {
+    font-size: 14px;
+    font-weight: bold;
+    color: $gray;
+    list-style: none;
+  }
+
+  &__cat {
+    position: relative;
+    display: block;
+    max-width: 100%;
+    bottom: -10px;
+    margin-top: auto;
+  }
+
+  &__weight {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+  }
+}
+
+
+.food-weight {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  background-color: $blue;
+  border-radius: 50%;
+  color: white;
+  line-height: 1;
+
+  &__value {
+    font-size: 42px;
+  }
+
+  &__unit {
+    font-size: 24px;
+  }
+}
